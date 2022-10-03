@@ -28,48 +28,211 @@ function playRound (playerSelection, computerSelection){
     
     if (playerSelection === 'rock' && computerSelection === 'rock') {
         return 'Tie!';
-        
-                
     } else if (playerSelection === 'rock' && computerSelection === 'paper') {
-        computerScore++;
         return 'You Lose';
-        
-                    
     } else if (playerSelection === 'rock' && computerSelection === 'scissor') {
-        playerScore++;    
         return 'You Win';
-                
     } else if (playerSelection === 'paper' && computerSelection === 'rock') {
-        playerScore++; 
         return 'You Win';
-                  
     } else if (playerSelection === 'paper' && computerSelection === 'paper') {
         return 'Tie!';
-                
     } else if (playerSelection === 'paper' && computerSelection === 'scissor') {
-        computerScore++;  
         return 'You Lose';
-        
-              
     } else if (playerSelection === 'scissor' && computerSelection === 'rock') {
-        computerScore++; 
         return 'You Lose';
-              
     } else if (playerSelection === 'scissor' && computerSelection === 'paper') {
-        playerScore++ 
         return 'You Win';
-               
     } else if (playerSelection === 'scissor' && computerSelection === 'scissor') {
         return 'Tie!';
-                
     } else {
         return 'Input Correct Weapon';
-                
     }
 }
+                
+const rockButton = document.querySelector('#rock');
+const paperButton = document.querySelector('#paper');
+const scissorButton = document.querySelector('#scissor');
+const result = document.querySelector('#result');
 
 let playerScore = 0;
 let computerScore = 0;
+let playerScoreCount = document.querySelector('#playerScore');
+let computerScoreCount = document.querySelector('#computerScore');
+
+
+rockButton.addEventListener('click', () => {
+    let playerSelection = 'rock';
+    let computerSelection = getComputerChoice();
+    playRound(playerSelection, computerSelection);
+    if (playRound(playerSelection, computerSelection) === 'Tie!'){
+        result.textContent = 'Tie!'
+    } else if (playRound(playerSelection, computerSelection) === 'You Win'){
+        result.textContent = 'You Win!';
+        playerScore++;
+    } else {
+        result.textContent = 'You Lose!';
+        computerScore++;
+    }
+
+    if (playerScore === 5){
+        result.textContent = 'You win the whole game, congrats!';
+        playerScore = 0;
+        computerScore = 0;
+    } else if (computerScore === 5){
+        result.textContent = 'You lost the whole game, congrats!';
+        playerScore = 0;
+        computerScore = 0;
+    }
+
+   
+    
+    playerScoreCount.textContent = playerScore;
+    computerScoreCount.textContent = computerScore;
+    
+        
+
+    
+
+    
+    console.log(playerSelection)
+    console.log(computerSelection)
+    console.log(playRound(playerSelection, computerSelection))
+    console.log(playerScore);
+    console.log(computerScore);
+    
+
+    
+});
+
+paperButton.addEventListener('click', () => {
+    let playerSelection = 'paper';
+    let computerSelection = getComputerChoice();
+    playRound(playerSelection, computerSelection);
+    if (playRound(playerSelection, computerSelection) === 'Tie!'){
+        result.textContent = 'Tie!'
+    } else if (playRound(playerSelection, computerSelection) === 'You Win'){
+        result.textContent = 'You Win!';
+        playerScore++;
+    } else {
+        result.textContent = 'You Lose!'
+        computerScore++;
+    }
+
+    if (playerScore === 5){
+        result.textContent = 'You win the whole game, congrats!';
+        playerScore = 0;
+        computerScore = 0;
+    } else if (computerScore === 5){
+        result.textContent = 'You lost the whole game, congrats!';
+        playerScore = 0;
+        computerScore = 0;
+    }
+
+  
+    
+    
+
+    playerScoreCount.textContent = playerScore;
+    computerScoreCount.textContent = computerScore;
+    
+
+
+    
+    console.log(playerSelection)
+    console.log(computerSelection)
+    console.log(playRound(playerSelection, computerSelection))
+    console.log(playerScore);
+    console.log(computerScore);
+    
+});
+
+scissorButton.addEventListener('click', () => {
+    let playerSelection = 'scissor';
+    let computerSelection = getComputerChoice();
+    playRound(playerSelection, computerSelection);
+    if (playRound(playerSelection, computerSelection) === 'Tie!'){
+        result.textContent = 'Tie!'
+    } else if (playRound(playerSelection, computerSelection) === 'You Win'){
+        result.textContent = 'You Win!';
+        playerScore++;
+    } else {
+        result.textContent = 'You Lose!'
+        computerScore++;
+    }
+
+    if (playerScore === 5){
+        result.textContent = 'You win the whole game, congrats!';
+        playerScore = 0;
+        computerScore = 0;
+    } else if (computerScore === 5){
+        result.textContent = 'You lost the whole game, congrats!';
+        playerScore = 0;
+        computerScore = 0;
+    }
+
+   
+
+    playerScoreCount.textContent = playerScore;
+    computerScoreCount.textContent = computerScore;
+    
+    
+    console.log(playerSelection)
+    console.log(computerSelection)
+    console.log(playRound(playerSelection, computerSelection))
+    console.log(playerScore);
+    console.log(computerScore);
+
+    
+});
+
+
+
+
+
+
+    
+
+
+
+
+
+         
+    
+        
+              
+        
+              
+        
+               
+                
+                
+        
+                
+        
+        
+                    
+         
+                
+        
+                  
+    
+
+    
+
+
+
+
+
+
+
+    
+    
+
+
+
+
+
+
 
 /* playerScore and computerScore sets starting score to "0" and is used in playRound function to increment score depending on
 who won the round */
@@ -78,33 +241,9 @@ who won the round */
 function game (){
     /* This game function is created to allow the playRound function to be executed 5 times and also return the result of those 5 rounds */
 
-    for (let i = 0; i < 5; i++) {
+    
 
-        /* This for loop, loops the prompt needed to get user to input "rock, paper, or scissor". It also loops the randomly generated 
-        computerSelection. Both these variables are then used as parameters for playRound() function to return the result of each round.
-        Note: I had a really tough time trying to figure out why just placing <playRound(playerSelection, computerSelection)> alone in the for loop wasn't looping the playerSelection and computerSelection variable so that a new prompt would pop up each round as well as generate a random choice for computer selection. I eventually figured out the playerSelection and computerSelection variables needs to be in the loop as well. Before this debug, I had them placed in global. */
-        
-        let playerSelection = prompt('rock, paper, or scissor?').toLowerCase()
-        let computerSelection = getComputerChoice()
-        playRound(playerSelection, computerSelection)
-        
-        console.log(playRound(playerSelection, computerSelection))
-        
-        
-        
-
-
-    }
-
-    if (playerScore > computerScore){
-        alert('You Won The Game!');
-
-    } else if (playerScore < computerScore){
-        alert('You Lost The Game!');
-
-    } else {
-        alert('Tie Game!');
-    }
+    
 
     /* This if else statement takes the total score from both playerScore and computerScore variables and returns who won and lost and if
     the game was a tie. */
@@ -114,8 +253,7 @@ function game (){
     
 }
     
-game()
-console.log(game);
+
 
     
     
